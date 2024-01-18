@@ -1,0 +1,5 @@
+{
+        nav.map( item => { 
+            return <Link href={item.link} className="border-r-2 border-primary flex flex-col whitespace-nowrap h- -rotate-90 ">{ item.name  }</Link>
+         })
+     }
