@@ -1,33 +1,22 @@
 'use client'
+import React from 'react';
+import withMaskEffect from '../Hoc/Mask';
 
-import { useState } from 'react';  
-import { motion } from 'framer-motion';
-import useMousePosition from '../../utils/useMousePosition';
+const OffScr = ({ onMouseEnter, onMouseLeave }) => (
+  <>
+    <p className=' font-space text-sml ml-96 mt-96' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    Yukendhiran
+  </p>
+  </>
+  
+);
 
-export default function Home() {
+const OnScr = () =>(
+  <>
+  <p className='text-white  font-space ml-96 mt-96 text-sml'>Yukendhiran</p>
+  </>
+)
 
-  const [isHovered, setIsHovered] = useState(false);
-  const { x, y } = useMousePosition();
-  const size = isHovered ? 400 : 40;
+const CustomComponentWithMask = withMaskEffect(OnScr,OffScr);
 
-  return (
-    <main className='ml-40 mr-40 '>
-      <div className=" font-space text-sml flex ">
-      <p className='text-white' >Yukendhiran</p>
-      
-        <motion.div 
-        className=' mask absolute'
-        animate={{
-          WebkitMaskPosition: `${x - (size/2)}px ${y - (size/2)}px`,
-          WebkitMaskSize: `${size}px`,
-        }}
-        transition={{ type: "tween", ease: "backOut", duration:0.5}}
-      >
-          <p onMouseEnter={() => {setIsHovered(true)}} onMouseLeave={() => {setIsHovered(false)}}>
-          Yukendhiran
-          </p>
-      </motion.div>
-      </div>
-    </main>
-  )
-}
+export default CustomComponentWithMask;

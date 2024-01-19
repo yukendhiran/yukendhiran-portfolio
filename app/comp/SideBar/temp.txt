@@ -3,3 +3,44 @@
             return <Link href={item.link} className="border-r-2 border-primary flex flex-col whitespace-nowrap h- -rotate-90 ">{ item.name  }</Link>
          })
      }
+
+     <div className=" font-space text-sml flex  ml-40 mt-40 ">
+        Yukendhiran
+      
+      <div className="mask absolute ">Yukendhiran</div>
+
+
+      //mask
+      'use client'
+
+import { useState } from 'react';  
+import { motion } from 'framer-motion';
+import useMousePosition from '../../utils/useMousePosition';
+
+export default function Home() {
+
+  const [isHovered, setIsHovered] = useState(false);
+  const { x, y } = useMousePosition();
+  const size = isHovered ? 400 : 40;
+
+  return (
+    <main className='w-full h-full '>
+      <div className=" font-space text-sml flex ">
+      <p className='text-white mx-auto my-auto' >Yukendhiran</p>
+      
+        <motion.div 
+        className=' mask absolute'
+        animate={{
+          WebkitMaskPosition: `${x - (size/2)}px ${y - (size/2)}px`,
+          WebkitMaskSize: `${size}px`,
+        }}
+        transition={{ type: "tween", ease: "backOut", duration:0.5}}
+      >
+          <p className='my-auto ' onMouseEnter={() => {setIsHovered(true)}} onMouseLeave={() => {setIsHovered(false)}}>
+          Yukendhiran
+          </p>
+      </motion.div>
+      </div>
+    </main>
+  )
+}
