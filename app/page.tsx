@@ -3,7 +3,7 @@ import Hero from "./comp/Hero/Hero"
 export default function Home() {
   return (
     <>
-    <div className=" bg-secondary flex flex-row  ">
+    <div className=" bg-secondary   ">
       <SideBar/>
      <Hero />
       

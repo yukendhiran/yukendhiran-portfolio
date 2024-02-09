@@ -39,8 +39,8 @@ const SideBar = () => {
 
      <div className="flex flex-row space-x-3 mt-[500px] -rotate-90 font-space">
      {
-        nav.map( item => { 
-            return <Link href={item.link} className="p-2 border-r-2 border-spacing-1 border-dotted ">{ item.name  }</Link>
+        nav.map( (item, i) => { 
+            return <Link href={item.link} key={i} className="p-2 border-r-2 border-spacing-1 border-dotted ">{ item.name  }</Link>
          })
      }
      </div>

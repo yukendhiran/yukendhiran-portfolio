@@ -1,22 +1,26 @@
-'use client'
+"use client"
 import React from 'react';
-import withMaskEffect from '../Hoc/Mask';
+import Image from 'next/image';
+import Warpper from '../Hoc/Wrap'
+import { motion, } from 'framer-motion';
+function Hero() {
 
-const OffScr = ({ onMouseEnter, onMouseLeave }) => (
-  <>
-    <p className=' font-space text-sml ml-96 mt-96' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-    Yukendhiran
-  </p>
-  </>
+  const { scrollYProgress } = useViewportScroll()
+const scale = useTransform(scrollYProgress, [0, 1], [0.2, 2]);
+
+  return(
+  <div className=' bg-secondary text-primary relative'>
+    <motion.div style={{scale}} className=' right-0 ' >
+      <Image src="/yuki.png" alt="hero" width={500} height={500}  className='  rounded-lg'/>
+    </motion.div>
+    <motion.div className=' font-space text-white text-sml ' >
+      Yukendhiran
+    </motion.div>
+    
+  </div>
+  )
   
-);
+  
+}
 
-const OnScr = () =>(
-  <>
-  <p className='text-white  font-space ml-96 mt-96 text-sml'>Yukendhiran</p>
-  </>
-)
-
-const CustomComponentWithMask = withMaskEffect(OnScr,OffScr);
-
-export default CustomComponentWithMask;
+export default Warpper(Hero);
