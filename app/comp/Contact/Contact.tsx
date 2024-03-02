@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
         </a>
         <a href={phoneAction} className="">
           <Icon icon="mdi:phone-outline" className="lg:text-mid sm:text-6xl" />
-        </a>
+        </a> 
       </div>
     </div>
   );
