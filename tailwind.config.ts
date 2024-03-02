@@ -8,7 +8,8 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      'sm': '320px', // override the default small screen breakpoint
+      'sm': '320px',
+      'md': '768px', // override the default small screen breakpoint
       'lg': '1024px', // override the default large screen breakpoint
       // Add more custom breakpoints if needed
     },

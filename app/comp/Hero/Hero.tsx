@@ -7,7 +7,7 @@ import { useScroll, motion, useTransform } from "framer-motion";
 
 function Hero() {
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 800], ['0%', '170%']);
+  const y = useTransform(scrollY, [0, 800], ['0%', '150%']);
   
 
   return (
@@ -19,10 +19,10 @@ function Hero() {
       <Image src="/yuki.png" alt="hero" width={300} height={300} className='rounded-lg' />
     </motion.div>
     <motion.div className=' mt-10 mb-10 text-xs ' >
-        yukendhiran.  
+        Yukendhiran.  
     </motion.div>  
   </motion.div>
-  <div className='text-xxs w-full'> 
+  <div className='text-xxs w-full indent-16 text-justify'> 
     "Jack of all trades, master of none, but better than a master of one."
     </div>
   </div>
@@ -30,13 +30,13 @@ function Hero() {
   <div className='sm:hidden lg:block  text-primary min-h-screen '>
     <motion.div className='flex flex-col w-1/2  '>
       <motion.div className=' mt-10 mb-16 text-sml ' >
-        yukendhiran.
+        Yukendhiran.
       </motion.div>
    
   </motion.div> 
   <motion.div className=''  >
       <div className='flex '>
-        <div className='text-xs w-1/2'> 
+        <div className='text-xs w-1/2 indent-16 text-justify'> 
            "Jack of all trades, master of none, but better than a master of one."
          </div>
       <motion.div className='ml-16' style={{y}}> 

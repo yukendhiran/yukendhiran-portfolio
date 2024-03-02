@@ -2,18 +2,20 @@
 import SideBar from "./comp/SideBar/SideBar";
 import Hero from "./comp/Hero/Hero";
 import About from "./comp/About/About";
-import { useScroll, motion, useTransform } from "framer-motion";
-
+import Exp from "./comp/Exp/Exp";
+import Projects from "./comp/Projrcts/Projects";
+import Contact from "./comp/Contact/Contact";
 export default function Home() {
    
 
   return (
-    <div className="bg-secondary">
+    <div className="bg-secondary text-primary">
       <SideBar />
-      <motion.div >
-        <Hero />
-      </motion.div>
+      <Hero />
       <About/>
+      <Exp/>
+      <Projects/>
+      <Contact/>
       
     </div>
   );
