@@ -5,7 +5,7 @@ const Wrapper = (Component) =>
     return (
       <section
         
-        className=" mx-24 "
+        className=" sm:mx-16 lg:mx-24 "
       >
         
 

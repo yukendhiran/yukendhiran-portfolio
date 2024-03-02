@@ -6,9 +6,9 @@ import Warpper from '../Hoc/Wrap'
 import { useScroll, motion, useTransform } from "framer-motion";
 
 function Hero() {
-  let { scrollYProgress } = useScroll();
-  let y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  let scale = useTransform(scrollYProgress, [0, 1], ["100%", "90%"]);
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 800], ['0%', '170%']);
+  
 
   return (
     <>
@@ -16,24 +16,35 @@ function Hero() {
     <motion.div className='flex flex-col items-center justify-center my-auto mx-auto '
     >
     <motion.div className='mt-24' >
-      <Image src="/yuki.png" alt="hero" width={500} height={500} className='rounded-lg' />
+      <Image src="/yuki.png" alt="hero" width={300} height={300} className='rounded-lg' />
     </motion.div>
-    <motion.div className=' mt-10 mb-24 text-xs ' >
-        yukendhiran.
-    </motion.div>
+    <motion.div className=' mt-10 mb-10 text-xs ' >
+        yukendhiran.  
+    </motion.div>  
   </motion.div>
+  <div className='text-xxs w-full'> 
+    "Jack of all trades, master of none, but better than a master of one."
+    </div>
   </div>
 
   <div className='sm:hidden lg:block  text-primary min-h-screen '>
     <motion.div className='flex flex-col w-1/2  '>
-      <motion.div className=' mt-10 mb-24 text-sml ' >
+      <motion.div className=' mt-10 mb-16 text-sml ' >
         yukendhiran.
-    </motion.div>
-    <div>" Jack of All Trades, Master of None but Often Better than Master of One "</div>
+      </motion.div>
+   
   </motion.div> 
-  <motion.div className='ml-[700px]' style={{ y }} >
-      <Image src="/yuki.png" alt="hero" width={500} height={500} className='rounded-lg' />
-    </motion.div>
+  <motion.div className=''  >
+      <div className='flex '>
+        <div className='text-xs w-1/2'> 
+           "Jack of all trades, master of none, but better than a master of one."
+         </div>
+      <motion.div className='ml-16' style={{y}}> 
+        <Image src="/yuki.png" alt="hero" width={400} height={400} className='rounded-lg' />
+      </motion.div>
+      </div>
+      
+      </motion.div>
   </div>
     </>
   )
