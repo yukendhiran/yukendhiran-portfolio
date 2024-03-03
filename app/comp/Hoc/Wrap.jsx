@@ -5,8 +5,7 @@ const Wrapper = (Component) => {
   function HOC() {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
-    
-   
+
     return (
       <section ref={ref}>
           <section
