@@ -13,16 +13,16 @@ const Contact: React.FC = () => {
       <div className='lg:text-sml sm:text-xs '>Contact.</div>
       <div className="mx-auto flex  flex-row justify-center smt-3  sm:mb-10 lg:mb-0">
         <a href={linkedinLink} target="_blank" rel="noreferrer" className="">
-          <Icon icon="mdi:linkedin" className="lg:text-mid sm:text-6xl" />
+          <Icon icon="mdi:linkedin" className="lg:text-sml sm:text-4xl" />
         </a>
         <a href={githubLink} target="_blank" rel="noreferrer" className="">
-          <Icon icon="mdi:github" className="lg:text-mid sm:text-6xl" />
+          <Icon icon="mdi:github" className="lg:text-sml sm:text-4xl" />
         </a>
         <a href={emailAction} className="">
-          <Icon icon="mdi:email" className="lg:text-mid sm:text-6xl" />
+          <Icon icon="mdi:email" className="lg:text-sml sm:text-4xl" />
         </a>
         <a href={phoneAction} className="">
-          <Icon icon="mdi:phone-outline" className="lg:text-mid sm:text-6xl" />
+          <Icon icon="mdi:phone-outline" className="lg:text-sml sm:text-4xl" />
         </a> 
       </div>
     </div>

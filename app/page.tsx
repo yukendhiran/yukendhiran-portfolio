@@ -5,6 +5,10 @@ import About from "./comp/About/About";
 import Exp from "./comp/Exp/Exp";
 import Projects from "./comp/Projrcts/Projects";
 import Contact from "./comp/Contact/Contact";
+
+import Cert from './comp/About/Cert'
+import Acad from './comp/About/Acad'
+import Skills from './comp/About/Skills'
 export default function Home() {
    
 
@@ -13,6 +17,9 @@ export default function Home() {
       <SideBar />
       <Hero />
       <About/>
+      <Acad/>
+      <Cert/>
+      <Skills/>
       <Exp/>
       <Projects/>
       <Contact/>

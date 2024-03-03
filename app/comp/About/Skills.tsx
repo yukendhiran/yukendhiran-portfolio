@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
-
+import Wrapper from '../Hoc/Wrap';
 const Skills = () => {
   const iconData = [
     { name: "logos:react", link: "https://www.reactjs.org" },
@@ -24,4 +24,4 @@ const Skills = () => {
   );
 }
 
-export default Skills;
+export default Wrapper(Skills);

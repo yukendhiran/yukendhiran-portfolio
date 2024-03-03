@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Wrapper from '../Hoc/Wrap';
 const Acad = () => {
   const acad = [
     {
@@ -58,4 +58,4 @@ const Acad = () => {
   );
 };
 
-export default Acad;
+export default  Wrapper(Acad);

@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useReducer, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import React from 'react';
-
+import Wrapper from "../Hoc/Wrap";
 const imageLinks = [
   {
     imageUrl: "https://images.pexels.com/photos/13922583/pexels-photo-13922583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -25,7 +25,7 @@ interface ActionType {
   type: string;
 }
 
-const HomePage: NextPage = () => {
+const Cert: NextPage = () => {
   const initialState: StateType = { url: 0 };
   const [currentImage, setCurrentImage] = useReducer(reducer, initialState);
   const [direction, setDirection] = useState<number>(1);
@@ -118,4 +118,4 @@ const HomePage: NextPage = () => {
   );
 };
 
-export default HomePage;
+export default Wrapper(Cert);
