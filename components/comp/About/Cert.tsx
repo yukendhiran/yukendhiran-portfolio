@@ -1,6 +1,6 @@
 import * as React from "react"
 import Autoplay from "embla-carousel-autoplay"
-import { client } from '../../lib/sanity'
+import { client } from '../../../app/lib/sanity'
 import { urlForImage } from '@/app/lib/image';
 import {  useState, useEffect } from "react";
 
@@ -13,18 +13,28 @@ import {
 } from "@/components/ui/carousel"
 import Wrapper from "../Hoc/Wrap"
 
+interface Certification {
+  cert: {
+    asset: {
+      _ref: string;
+      _type: 'image';
+    };
+  };
+  site: string;
+}
+
 function Cert() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   )
 
-  const [cert, setCert] = useState([])
+  const [cert, setCert] = useState<Certification[]>([]);
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     const query = `*[_type == "cert"]`
     
-    client.fetch(query).then((data) => {
+    client.fetch(query).then((data: Certification[]) => {
       setCert(data)
       setLoading(false)
     })
@@ -34,11 +44,10 @@ function Cert() {
 
   if (isLoading) return <p>Loading...</p>
   if (!cert) return <p>No  data</p>
-
-
+ 
   return (
     <div className="sm:text-xs lg:text-sml mt-10">
-    <div className=''>Academics.</div>
+    <div >Certifications.</div>
     
     <Carousel
       plugins={[plugin.current]}

@@ -1,24 +1,37 @@
 import React from 'react';
 import Wrapper from '../Hoc/Wrap';
+import { client } from '../../../app/lib/sanity'
+import {  useState, useEffect } from "react";
+
+interface Experience {
+  company: string;
+  position: string;
+  duration: string;
+  responsibilities: string[];
+  website: string;
+}
 
 const Exp = () => {
-  const experienceData = [
-    {
-      company: "Aeira Advert.",
-      position: "Full Stack Engineer",
-      duration: "April 2023 - Present",
-      responsibilities: [
-        "Developed and maintained web applications",
-        "Uses architecuture and design",
-        "Implemented new features and enhancements"
-      ],
-      website: "https://www.abcinc.com" // Add the website for the company
-    },
+
+  const [exp, setExp] = useState<Experience[]>([]);
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const query = `*[_type == "exp"]`
+    
+    client.fetch(query).then((data: Experience[]) => {
+      setExp(data)
+      setLoading(false)
+    })
+  }, [])
+
   
-  ];
+
+  if (isLoading) return <p>Loading...</p>
+  if (!exp) return <p>No  data</p>
 
   return (
-    <div >
+    <section id='experience' >
       <div className='lg:text-sml sm:text-xs mt-10'>Experience.</div>
       <div className='hidden lg:block '>
         <table className='w-full table-auto border-collapse border-2 border-primary'>
@@ -31,7 +44,7 @@ const Exp = () => {
             </tr>
           </thead>
           <tbody>
-            {experienceData.map((experience, index) => (
+            {exp.map((experience, index) => (
               <tr key={index}>
                 <td className='border border-primary p-2'><a href={experience.website} target="_blank" rel="noreferrer">{experience.company}</a></td>
                 <td className='border border-primary p-2'>{experience.position}</td>
@@ -49,7 +62,7 @@ const Exp = () => {
         </table>
       </div>
       <div className='lg:hidden sm:text-xxs p-4'>
-        {experienceData.map((experience, index) => (
+        {exp.map((experience, index) => (
           <div key={index} className='mb-4'>
             <div><a href={experience.website} target="_blank" rel="noreferrer">{experience.company}</a></div>
             <div>{experience.position}</div>
@@ -62,7 +75,7 @@ const Exp = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

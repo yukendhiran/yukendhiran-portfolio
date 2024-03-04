@@ -1,16 +1,20 @@
 import React from 'react'
 import Warpper from '../Hoc/Wrap'
 import { useState, useEffect } from 'react'
-import { client } from '../../lib/sanity'
+import { client } from '../../../app/lib/sanity'
 
+
+interface AboutType {
+  about: string; 
+}
 function About() {
-  const [about, setAbout] = useState([])
+  const [about, setAbout] = useState<AboutType[]>([{ about: '' }]);
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     const query = `*[_type == "about"]`
     
-    client.fetch(query).then((data) => {
+    client.fetch(query).then((data: AboutType[]) => {
       setAbout(data)
       setLoading(false)
     })
@@ -22,7 +26,7 @@ function About() {
   if (isLoading) return <p>Loading...</p>
   if (!about) return <p>No profile data</p>
   return (
-    <>
+    <section id='about'>
        <div className='text-primary'>
        <div className=' lg:text-sml sm:text-xs'>
             About.
@@ -33,7 +37,7 @@ function About() {
        
         
        </div>
-    </>
+    </section>
   )
 }
 

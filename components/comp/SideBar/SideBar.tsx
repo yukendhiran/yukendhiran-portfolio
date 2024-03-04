@@ -4,19 +4,19 @@ import Link from "next/link"
 const navLap = [
   {
     name:"Contact.",
-    link:"/",
+    link:"#contact",
   },
   {
     name:"Projects.",
-    link:"/",
+    link:"#projects",
   },
   {
     name:"Experience.",
-    link:"/",
+    link:"#experience",
   },
   {
     name:"About.",
-    link:"/",
+    link:"#about",
   },
   {
     name:"Home.",
@@ -27,15 +27,15 @@ const navLap = [
 const navMob = [
   {
     name:"Contact.",
-    link:"/",
+    link:"#contact",
   },
   {
     name:"Projects.",
-    link:"/",
+    link:"#projects",
   },
   {
     name:"Experience.",
-    link:"/",
+    link:"#experience",
   },
 ]
 const SideBar = () => {
@@ -44,10 +44,11 @@ const SideBar = () => {
     <div className=" h-screen w-14 bg-secondary text-primary border-r-2 border-primary fixed sm:hidden lg:block" >
       <Image
       src="/yuki-w.svg"
-      width={40}
-      height={40}
+      width={30}
+      height={30}
       alt="Picture of the author"
-      className=" mx-auto mt-5  "
+      priority={true}
+      className=" mx-auto mt-5 w-auto h-auto  "
       
     />
     

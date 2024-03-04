@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 
-const space = localFont({ src: '../public/fonts/space-mono/SpaceMono-Regular.ttf' })
+const space = localFont({ src: "../app/fonts/space-mono/SpaceMono-Regular.ttf" })
 
 export const metadata: Metadata = {
   title: 'Yukendhiran',

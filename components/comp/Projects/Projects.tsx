@@ -1,6 +1,7 @@
 import React from 'react';
 import Wrapper from '../Hoc/Wrap';
-
+import { client } from '../../../app/lib/sanity'
+import {  useState, useEffect } from "react";
 interface Project {
   name: string;
   year: string;
@@ -9,47 +10,36 @@ interface Project {
   technologies: string[];
 }
 
-const ProjectDetails: React.FC<Project> = ({ name, year, description, technologies }) => {
-  return (
-    <tr>
-      <td>{name}</td>
-      <td>{year}</td>
-      <td>{description}</td>
-      <td>{technologies.join(", ")}</td>
-    </tr>
-  );
-};
 
 const Projects: React.FC = () => {
-  const projectData: Project[] = [
-    {
-      name: "Project 1",
-      year: "2021",
-      link:"/",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      technologies: ["React", "Node.js", "MongoDB"],
-    },
-    {
-      name: "Project 2",
-      year: "2022",
-      link:"/",
-      description: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
-      technologies: ["Angular", "Express", "MySQL"],
-    },
-    // Add more projects as needed
-  ];
+
+  const [project, setProject] = useState<Project[]>([]);
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const query = `*[_type == "project"]`
+    
+    client.fetch(query).then((data: Project[]) => {
+      setProject(data)
+      setLoading(false)
+    })
+  }, [])
+
+ 
+  if (isLoading) return <p>Loading...</p>
+  if (!project) return <p>No  data</p>
 
   return (
-    <div>
+    <section id='projects'>
       <div >
         <div className='lg:text-sml sm:text-xs'>Projects.</div>
-        <div className='lg:hidden sm:text-xxs p-4'>
-        {projectData.map((project, index) => (
+        <div className='lg:hidden sm:text-xxs p-4 mx-auto'>
+        {project.map((project, index) => (
           <div key={index} className='mb-4'>
             <div><a href={project.link} target="_blank" rel="noreferrer">{project.name}</a></div>
             <div>{project.year}</div>
             <div>{project.description}</div>
-            <ul className='grid grid-cols-3'>
+            <ul className='grid grid-cols-2 text-xxs'>
               {project.technologies.map((tech, index) => (
                 <div key={index}>{tech}</div>
               ))}
@@ -57,7 +47,8 @@ const Projects: React.FC = () => {
           </div>
         ))}
       </div>
-        <table className='w-full sm:hidden lg:block table-auto border-collapse border- border-primary'>
+      <div className='sm:hidden lg:block' >
+        <table className='w-full table-auto border-collapse border-2 border-primary'>
           <thead>
             <tr>
               <th className='border border-primary p-2'>Name</th>
@@ -67,13 +58,13 @@ const Projects: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {projectData.map((project, index) => (
+            {project.map((project, index) => (
               <tr key={index}>
                 <td className='border border-primary p-2'><a href={project.link} target="_blank" rel="noreferrer">{project.name}</a></td>
                 <td className='border border-primary p-2'>{project.year}</td>
                 <td className='border border-primary p-2'>{project.description}</td>
                 <td className='border border-primary p-2'>
-                  <ul>
+                  <ul className='grid grid-cols-2 '>
                     {project.technologies.map((tech, index) => (
                       <li key={index}>{tech}</li>
                     ))}
@@ -83,8 +74,9 @@ const Projects: React.FC = () => {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

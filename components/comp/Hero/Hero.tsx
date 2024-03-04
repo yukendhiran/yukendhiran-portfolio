@@ -2,23 +2,33 @@
 import React from 'react';
 import Warpper from '../Hoc/Wrap'
 import { useState, useEffect } from 'react'
-import { client } from '../../lib/sanity'
+import { client } from '../../../app/lib/sanity'
 import { urlForImage } from '@/app/lib/image';
 
 import { useScroll, motion, useTransform } from "framer-motion";
 
+interface Home {
+  name: string;
+  proverb: string;
+  image: {
+    asset: {
+      _ref: string;
+      _type: 'image';
+    };
+  };
+}
 
 function Hero() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 800], ['0%', '150%']);
 
-  const [home, setHome] = useState([])
+  const [home, setHome] = useState<Home[]>([]);
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     const query = `*[_type == "home"]`
-    
-    client.fetch(query).then((data) => {
+     
+    client.fetch(query).then((data: Home[]) => {
       setHome(data)
       setLoading(false)
     })

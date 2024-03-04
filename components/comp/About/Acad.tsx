@@ -1,23 +1,29 @@
 import React from 'react';
 import Wrapper from '../Hoc/Wrap';
 import { useState, useEffect } from 'react'
-import { client } from '../../lib/sanity'
+import { client } from '../../../app/lib/sanity'
+
+interface Academics {
+  degree: string;
+  year: string;
+  cgpa: string;
+  uni: string;
+}
+
 const Acad = () => {
-  const [acad, setAcad] = useState([])
+  const [acad, setAcad] =  useState<Academics[]>([]);
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     const query = `*[_type == "acad"]`
     
-    client.fetch(query).then((data) => {
+    client.fetch(query).then((data: Academics[]) => {
       setAcad(data)
       setLoading(false)
     })
 
   }, [])
-
-  console.log(acad)
-
+  
   if (isLoading) return <p>Loading...</p>
   if (!acad) return <p>No profile data</p>
 

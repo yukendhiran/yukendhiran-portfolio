@@ -15,7 +15,7 @@ const Wrapper = (Component) => {
           opacity: isInView ? 1 : 0,
           transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
         }}
-        className="sm:mx-24 lg:mx-32"
+        className="sm:mx-16 lg:mx-24"
       >
         <Component />
       </section>

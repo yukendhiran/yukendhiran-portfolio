@@ -1,15 +1,15 @@
 "use client"
 
-import SideBar from "./comp/SideBar/SideBar";
-import Hero from "./comp/Hero/Hero";
-import About from "./comp/About/About";
-import Exp from "./comp/Exp/Exp";
-import Projects from "./comp/Projrcts/Projects";
-import Contact from "./comp/Contact/Contact";
+import SideBar from "../components/comp/SideBar/SideBar";
+import Hero from "../components/comp/Hero/Hero";
+import About from "../components/comp/About/About";
+import Exp from "../components/comp/Exp/Exp";
+import Projects from "../components/comp/Projects/Projects";
+import Contact from "../components/comp/Contact/Contact";
 
-import Cert from './comp/About/Cert'
-import Acad from './comp/About/Acad'
-import Skills from './comp/About/Skills'
+import Cert from '../components/comp/About/Cert'
+import Acad from '../components/comp/About/Acad'
+import Skills from '../components/comp/About/Skills'
 export default function Home() {
    
 
