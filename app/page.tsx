@@ -1,4 +1,5 @@
-'use client'
+"use client"
+
 import SideBar from "./comp/SideBar/SideBar";
 import Hero from "./comp/Hero/Hero";
 import About from "./comp/About/About";
@@ -23,6 +24,7 @@ export default function Home() {
       <Exp/>
       <Projects/>
       <Contact/>
+     
       
     </div>
   );

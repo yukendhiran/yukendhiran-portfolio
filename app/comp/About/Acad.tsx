@@ -1,21 +1,25 @@
 import React from 'react';
 import Wrapper from '../Hoc/Wrap';
+import { useState, useEffect } from 'react'
+import { client } from '../../lib/sanity'
 const Acad = () => {
-  const acad = [
-    {
-      name: "B.Sc  Computer Science",
-      year: "2020-2023",
-      cgpa: "8.73",
-      university: "Vellore Institute of Technology",
-    },
-    {
-      name: "Master of Computer Application",
-      year: "2023-2025",
-      cgpa: "8.43",
-      university: "Vellore Institute of Technology",
-    },
-  
-  ];
+  const [acad, setAcad] = useState([])
+  const [isLoading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const query = `*[_type == "acad"]`
+    
+    client.fetch(query).then((data) => {
+      setAcad(data)
+      setLoading(false)
+    })
+
+  }, [])
+
+  console.log(acad)
+
+  if (isLoading) return <p>Loading...</p>
+  if (!acad) return <p>No profile data</p>
 
   return (
     <div>
@@ -33,23 +37,23 @@ const Acad = () => {
         <tbody>
           {acad.map((item, i) => (
             <tr key={i}>
-              <td className="p-2 sm:text-xxs lg:text-xs border border-primary">{item.name}</td>
+              <td className="p-2 sm:text-xxs lg:text-xs border border-primary">{item.degree}</td>
               <td className="p-2 sm:text-xxs lg:text-xs border border-primary">{item.year}</td>
               <td className="p-2 sm:text-xxs lg:text-xs border border-primary">{item.cgpa}</td>
-              <td className="p-2 sm:text-xxs lg:text-xs border border-primary">{item.university}</td>
+              <td className="p-2 sm:text-xxs lg:text-xs border border-primary">{item.uni}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
     <div className='lg:hidden sm:text-xxs p-4'>
-        {acad.map((experience, index) => (
+        {acad.map((item, index) => (
           <div key={index} className='mb-4'>
             
-            <div>{experience.name}</div>
-            <div>{experience.year}</div>
-            <div>CGPA:{experience.cgpa}</div>
-            <div>{experience.university}</div>
+            <div>{item.degree}</div>
+            <div>{item.year}</div>
+            <div>CGPA:{item.cgpa}</div>
+            <div>{item.uni}</div>
             
           </div>
         ))}

@@ -1,121 +1,63 @@
-"use client"
-import type { NextPage } from "next";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useReducer, useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import React from 'react';
-import Wrapper from "../Hoc/Wrap";
-const imageLinks = [
-  {
-    imageUrl: "https://images.pexels.com/photos/13922583/pexels-photo-13922583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    siteUrl: "https://www.coursera.org/"
-  },
-  {
-    imageUrl: "",
-    siteUrl: "https://www.edx.org/"
-  },
-  // Add more objects for other images and their respective site URLs
-];
+import * as React from "react"
+import Autoplay from "embla-carousel-autoplay"
+import { client } from '../../lib/sanity'
+import { urlForImage } from '@/app/lib/image';
+import {  useState, useEffect } from "react";
 
-interface StateType {
-  url: number;
-}
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import Wrapper from "../Hoc/Wrap"
 
-interface ActionType {
-  type: string;
-}
+function Cert() {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true })
+  )
 
-const Cert: NextPage = () => {
-  const initialState: StateType = { url: 0 };
-  const [currentImage, setCurrentImage] = useReducer(reducer, initialState);
-  const [direction, setDirection] = useState<number>(1);
+  const [cert, setCert] = useState([])
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setDirection(1);
-      setCurrentImage({ type: "next" });
-    }, 5000); 
-    return () => clearInterval(interval); 
-  }, []); 
+    const query = `*[_type == "cert"]`
+    
+    client.fetch(query).then((data) => {
+      setCert(data)
+      setLoading(false)
+    })
+  }, [])
 
-  function reducer(state: StateType, action: ActionType): StateType {
-    switch (action.type) {
-      case "next":
-        return { url: (state.url + 1) % imageLinks.length };
-      case "prev":
-        return { url: (state.url - 1 + imageLinks.length) % imageLinks.length };
-      default:
-        return state;
-    }
-  }
+  
 
-  const slideTransition = {
-    initial: (direction: number) => {
-      return {
-        x: direction > 0 ? 500 : -500,
-        opacity: 0,
-      };
-    },
-    animate: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => {
-      return {
-        x: direction > 0 ? -500 : 500,
-        opacity: 1,
-      };
-    },
-  };
+  if (isLoading) return <p>Loading...</p>
+  if (!cert) return <p>No  data</p>
+
 
   return (
-    <div className=" sm:text-xs lg:text-sml mt-10">
-      Certifications.
-      <section className="place-items-center sm:h-[40vh] lg:h-svh text-primary mt-2 bg-secondary ">
-        <main className="  sm:h-2/3 sm:w-full lg:h-4/5 lg:w-4/5 relative shadow-lg shadow-secondary overflow-hidden mx-auto">
-          <AnimatePresence initial={false} custom={direction}>
-            <a href={imageLinks[currentImage.url].siteUrl} target="_blank" rel="noopener noreferrer">
-              <motion.img
-                src={imageLinks[currentImage.url].imageUrl}
-                alt="slider image!"
-                className="absolute w-full h-full"
-                variants={slideTransition}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                key={imageLinks[currentImage.url].imageUrl}
-                transition={{
-                  type: "spring",
-                  stiffness: 120,
-                  mass: 0.2,
-                  damping: 10,
-                }}
-                custom={direction}
-              />
-            </a>
-          </AnimatePresence>
-          <button
-            className="z-10 absolute top-1/2 left-8 size-8 grid place-items-center rounded-full bg-white/10 text-white/40 border border-white/35 backdrop-blur-lg hover:border-white/60"
-            onClick={() => {
-              setDirection(-1);
-              setCurrentImage({ type: "prev" });
-            }}
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button
-            className="z-10 absolute top-1/2 right-8 size-8 grid place-items-center rounded-full bg-white/10 text-white/40 border border-white/35 backdrop-blur-lg hover:border-white/60"
-            onClick={() => {
-              setDirection(1);
-              setCurrentImage({ type: "next" });
-            }}
-          >
-            <ChevronRight size={18} />
-          </button>
-        </main>
-      </section>
+    <div className="sm:text-xs lg:text-sml mt-10">
+    <div className=''>Academics.</div>
+    
+    <Carousel
+      plugins={[plugin.current]}
+      className="place-items-center mx-auto sm:w-full lg:w-3/4 h-auto text-primary mt-2  mb-10 "
+      onMouseEnter={plugin.current.stop}
+      onMouseLeave={plugin.current.reset}
+    >
+     <CarouselContent>
+          {cert.map((item, index) => (
+            <CarouselItem key={index}>
+              <a href={item.site}><img src={urlForImage(item.cert)} alt="certification!" className=" place-items-center  w-full  " /></a>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
     </div>
-  );
-};
+  )
+}
 
 export default Wrapper(Cert);

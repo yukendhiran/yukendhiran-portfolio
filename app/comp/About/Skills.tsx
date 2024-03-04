@@ -10,7 +10,7 @@ const Skills = () => {
 
   return (
     <>
-      <div className='lg:text-sml sm:text-xs'>Skills.</div>
+      <div className='lg:text-sml sm:text-xs mt-14'>Skills.</div>
       <div className="flex justify-center">
         <div className="grid  sm:grid-cols-4  lg:grid-cols-6 gap-0 mx-auto border border-primary">
           {iconData.map((icon, index) => (
