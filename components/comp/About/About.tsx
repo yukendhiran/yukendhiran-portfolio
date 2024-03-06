@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Warpper from '../Hoc/Wrap'
 import { useState, useEffect } from 'react'

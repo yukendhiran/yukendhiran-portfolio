@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Wrapper from '../Hoc/Wrap';
 import { client } from '../../../app/lib/sanity'
@@ -46,13 +47,13 @@ const Exp = () => {
           <tbody>
             {exp.map((experience, index) => (
               <tr key={index}>
-                <td className='border border-primary p-2'><a href={experience.website} target="_blank" rel="noreferrer">{experience.company}</a></td>
+                <td className='border border-primary p-2 underline'><a href={experience.website} target="_blank" rel="noreferrer">{experience.company}</a></td>
                 <td className='border border-primary p-2'>{experience.position}</td>
                 <td className='border border-primary p-2'>{experience.duration}</td>
                 <td className='border border-primary p-2'>
                   <ul>
                     {experience.responsibilities.map((responsibility, index) => (
-                      <li key={index}>{responsibility}</li>
+                      <li className='p-1' key={index}>{responsibility}</li>
                     ))}
                   </ul>
                 </td>
@@ -64,12 +65,12 @@ const Exp = () => {
       <div className='lg:hidden sm:text-xxs p-4'>
         {exp.map((experience, index) => (
           <div key={index} className='mb-4'>
-            <div><a href={experience.website} target="_blank" rel="noreferrer">{experience.company}</a></div>
+            <div className='underline'><a href={experience.website} target="_blank" rel="noreferrer">{experience.company}</a></div>
             <div>{experience.position}</div>
             <div>{experience.duration}</div>
             <ul>
               {experience.responsibilities.map((responsibility, index) => (
-                <li key={index}>{responsibility}</li>
+                <li className='list-disc p-1' key={index}>{responsibility}</li>
               ))}
             </ul>
           </div>

@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Wrapper from '../Hoc/Wrap';
 import { client } from '../../../app/lib/sanity'
@@ -36,12 +37,12 @@ const Projects: React.FC = () => {
         <div className='lg:hidden sm:text-xxs p-4 mx-auto'>
         {project.map((project, index) => (
           <div key={index} className='mb-4'>
-            <div><a href={project.link} target="_blank" rel="noreferrer">{project.name}</a></div>
+            <div className='underline'><a href={project.link} target="_blank" rel="noreferrer">{project.name}</a></div>
             <div>{project.year}</div>
             <div>{project.description}</div>
             <ul className='grid grid-cols-2 text-xxs'>
               {project.technologies.map((tech, index) => (
-                <div key={index}>{tech}</div>
+                <li className='list-disc p-1' key={index}>{tech}</li>
               ))}
             </ul>
           </div>
@@ -60,13 +61,13 @@ const Projects: React.FC = () => {
           <tbody>
             {project.map((project, index) => (
               <tr key={index}>
-                <td className='border border-primary p-2'><a href={project.link} target="_blank" rel="noreferrer">{project.name}</a></td>
+                <td className='border border-primary p-2 underline'><a href={project.link} target="_blank" rel="noreferrer">{project.name}</a></td>
                 <td className='border border-primary p-2'>{project.year}</td>
                 <td className='border border-primary p-2'>{project.description}</td>
                 <td className='border border-primary p-2'>
                   <ul className='grid grid-cols-2 '>
                     {project.technologies.map((tech, index) => (
-                      <li key={index}>{tech}</li>
+                      <li className=' p-1' key={index}>{tech}</li>
                     ))}
                   </ul>
                 </td>

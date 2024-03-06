@@ -48,7 +48,7 @@ const SideBar = () => {
       height={30}
       alt="Picture of the author"
       priority={true}
-      className=" mx-auto mt-5 w-auto h-auto  "
+      className=" mx-auto mt-5 w-auto h-auto p-1  "
       
     />
     

@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import Wrapper from '../Hoc/Wrap';
 import { useState, useEffect } from 'react'
